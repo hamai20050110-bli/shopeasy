@@ -19,14 +19,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # Tự tìm thư mục chứa pubspec.yaml (ở ngoài cùng hoặc trong thư mục con)
+      - name: Tim thu muc project
+        id: proj
+        run: |
+          FILE=$(find . -maxdepth 2 -name pubspec.yaml -not -path "./.*" | head -n 1)
+          if [ -z "$FILE" ]; then
+            echo "Khong tim thay pubspec.yaml - hay tai file pubspec.yaml len GitHub"
+            exit 1
+          fi
+          echo "dir=$(dirname "$FILE")" >> "$GITHUB_OUTPUT"
+
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
-      - run: flutter pub get
-      - run: flutter build web --release --base-href "/${{ github.event.repository.name }}/" -t lib/giaodien.dart
+
+      - name: Lay thu vien
+        working-directory: ${{ steps.proj.outputs.dir }}
+        run: flutter pub get
+
+      # Nếu chưa có thư mục web thì tự tạo
+      - name: Them ho tro web neu thieu
+        working-directory: ${{ steps.proj.outputs.dir }}
+        run: |
+          if [ ! -d web ]; then flutter create . --platforms web; fi
+
+      - name: Build web
+        working-directory: ${{ steps.proj.outputs.dir }}
+        run: flutter build web --release --base-href "/${{ github.event.repository.name }}/" -t lib/giaodien.dart
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: build/web
+          path: ${{ steps.proj.outputs.dir }}/build/web
 
   deploy:
     needs: build
