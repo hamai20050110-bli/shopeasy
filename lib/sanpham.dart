@@ -26,8 +26,8 @@ const categories = [
 ];
 
 const products = [
-  Product('iPhone 15 Pro', '28.990.000đ', 'cat_phone', 'https://cdn.tgdd.vn/Files/2023/02/22/1512001/15pro-color-130923-154441-800-resize.jpg'),
-  Product('Samsung Galaxy S24', '22.990.000đ', 'cat_phone', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmjm_o2XFgVY9zdG-0E599-OK2GkNdEDhlgSvfCGUa7A&s=10'),
+  Product('iPhone 15 Pro', '28.990.000đ', 'cat_phone', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu5PNUJs5Tu0fg5SlafhMrJFIiHnFwWMSBO_bu_dnsBQh8L7-y5_0iE3U3&s=10'),
+  Product('Samsung Galaxy S24', '22.990.000đ', 'cat_phone', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVklHtfABm4ZZ7j4aZIBz1tjimHnjwTu5R65gsL2c8hQmKN17CF6alTZ8v&s=10'),
   Product('MacBook Air M2', '24.990.000đ', 'cat_laptop', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNMCVBKB6dTrxiwMPwa7Z486FY6rXcAkEpjCQCCZCqog&s=10'),
   Product('Dell XPS 13', '31.990.000đ', 'cat_laptop', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRneCDuz23Bw0Qsx9liehzCAWyQT-YurBQU1ve2cTIWlw&s=10'),
   Product('Tai nghe Bluetooth', '1.290.000đ', 'cat_accessory', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7C6gblEbaXH0yq7nRLxqzUVQHDHL-rTJy48UIrgdzhg&s=10'),

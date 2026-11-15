@@ -281,7 +281,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                           child: const CircleAvatar(
                             radius: 40,
-                            backgroundImage: NetworkImage('https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-1/840206587_1804328320578734_3490062392824018630_n.jpg?stp=dst-jpg_tt6&cstp=mx960x957&ctp=s200x200&_nc_cat=109&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=e99d92&_nc_ohc=pYJ4hpKvDwwQ7kNvwGvmPxM&_nc_oc=AdqVhgW8DiA4aqZwbcljA2HGqPAGWzOXDv94Ho08bMCkRV0MnQQoZduiM7NnTk1VIPDdi0LznwjPsaF0pH6ErRdU&_nc_zt=24&_nc_ht=scontent.fhan20-1.fna&_nc_gid=eS4XqxYHhUbNtlr7fxPrBQ&_nc_ss=7b2a8&oh=00_AQT3WljzVusame4wDtQArQ-kcAmOdaWjLJsVul5b7gS3Jg&oe=6AF5FF62'),
+                            backgroundImage: NetworkImage('https://scontent.fdad3-8.fna.fbcdn.net/v/t39.30808-6/840206587_1804328320578734_3490062392824018630_n.jpg?stp=dst-jpg_tt6&cstp=mx960x957&ctp=p526x296&_nc_cat=109&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=3lCpMny50f8Q7kNvwGiK4iX&_nc_oc=Adr9XfLBcOIsJpIaF39gSBIxTPbHv33ff-BmiSdpw-kcMDNCNH13syEImCINsU__2Rc&_nc_zt=23&_nc_ht=scontent.fdad3-8.fna&_nc_gid=Yh_BJS-B1J2CXdIIRkU7Og&_nc_ss=7b2a8&oh=00_AQRX7EJKuTdbZFR0oQHgADEABRb5b-KkXk00z1iWhUX25g&oe=6AFF9AA4'),
                           ),
                         ),
                         Positioned(
