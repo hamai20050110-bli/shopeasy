@@ -114,15 +114,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               ),
                             ),
                           ),
-                          Row(
-                            children: const [
-                              Icon(Icons.star_rounded, color: Colors.amber, size: 22),
-                              SizedBox(width: 4),
-                              Text('4.9', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-                              SizedBox(width: 4),
-                              Text('(156 đánh giá)', style: TextStyle(color: Colors.grey, fontSize: 13)),
-                            ],
-                          ),
+                        Row(
+                          children: [
+                            const Icon(Icons.star_rounded, color: Colors.amber, size: 22),
+                            const SizedBox(width: 4),
+                            Text(widget.product.rating,
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                            const SizedBox(width: 4),
+                            const Text('(156 đánh giá)',
+                                style: TextStyle(color: Colors.grey, fontSize: 13)),
+                          ],
+                        ),
                         ],
                       ),
                       const SizedBox(height: 16),
@@ -243,13 +245,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                       const SizedBox(height: 8),
-                      Text(
-                        'Sản phẩm chính hãng chất lượng cao, thiết kế sang trọng, tích hợp công nghệ mới nhất giúp trải nghiệm của bạn luôn mượt mà và đẳng cấp. Bảo hành chính hãng 12 tháng.',
-                        style: TextStyle(
-                          color: isDarkMode ? Colors.grey[300] : Colors.grey[700],
-                          height: 1.6,
-                        ),
+                     Text(
+                      'Sản phẩm chính hãng chất lượng cao, thiết kế sang trọng, tích hợp công nghệ mới nhất giúp trải nghiệm của bạn luôn mượt mà và đẳng cấp. Bảo hành chính hãng 12 tháng.',
+                      style: TextStyle(
+                        color: isDarkMode ? Colors.grey[300] : Colors.grey[700],
+                        height: 1.6,
                       ),
+                    ),
                       const SizedBox(height: 110),
                     ],
                   ),

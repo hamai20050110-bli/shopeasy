@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:baitap_buoi5/giaodienemily.dart';
 
 import 'chitietsp.dart';
 import 'giaodien.dart';
@@ -13,8 +14,49 @@ class Product {
   final String price;
   final String category;
   final String image;
+  final String description;
+  final String rating;
 
-  const Product(this.name, this.price, this.category, this.image);
+  const Product(
+    this.name,
+    this.price,
+    this.category,
+    this.image, {
+    this.description =
+        'Sản phẩm chính hãng chất lượng cao, thiết kế sang trọng, tích hợp công nghệ mới nhất giúp trải nghiệm của bạn luôn mượt mà và đẳng cấp. Bảo hành chính hãng 12 tháng.',
+    this.rating = '4.9',
+  });
+
+  // Chuyển JSON của DummyJSON thành Product
+  factory Product.fromApi(Map<String, dynamic> json) {
+    final usd = (json['price'] as num).toDouble();
+    return Product(
+      json['title'],
+      _doiSangVnd(usd),
+      _doiDanhMuc(json['category']),
+      json['thumbnail'],
+      description: json['description'],
+      rating: '${json['rating']}',
+    );
+  }
+}
+
+// Giá API là USD, đổi sang VNĐ dạng "28.990.000đ" để giỏ hàng tính tiền đúng
+String _doiSangVnd(double usd) {
+  final vnd = (usd * 25000).round();
+  final s = vnd.toString().replaceAllMapped(
+        RegExp(r'(?<=\d)(?=(\d{3})+(?!\d))'),
+        (m) => '.',
+      );
+  return '$sđ';
+}
+
+// Đổi danh mục API sang key danh mục có sẵn trong app
+String _doiDanhMuc(String c) {
+  if (c.contains('phone')) return 'cat_phone';
+  if (c.contains('laptop')) return 'cat_laptop';
+  if (c.contains('watch')) return 'cat_watch';
+  return 'cat_accessory';
 }
 
 const categories = [
@@ -26,8 +68,8 @@ const categories = [
 ];
 
 const products = [
-  Product('iPhone 15 Pro', '28.990.000đ', 'cat_phone', 'https://cdn.tgdd.vn/Files/2023/02/22/1512001/15pro-color-130923-154441-800-resize.jpg'),
-  Product('Samsung Galaxy S24', '22.990.000đ', 'cat_phone', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmjm_o2XFgVY9zdG-0E599-OK2GkNdEDhlgSvfCGUa7A&s=10'),
+  Product('iPhone 15 Pro', '28.990.000đ', 'cat_phone', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu5PNUJs5Tu0fg5SlafhMrJFIiHnFwWMSBO_bu_dnsBQh8L7-y5_0iE3U3&s=10'),
+  Product('Samsung Galaxy S24', '22.990.000đ', 'cat_phone', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVklHtfABm4ZZ7j4aZIBz1tjimHnjwTu5R65gsL2c8hQmKN17CF6alTZ8v&s=10'),
   Product('MacBook Air M2', '24.990.000đ', 'cat_laptop', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNMCVBKB6dTrxiwMPwa7Z486FY6rXcAkEpjCQCCZCqog&s=10'),
   Product('Dell XPS 13', '31.990.000đ', 'cat_laptop', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRneCDuz23Bw0Qsx9liehzCAWyQT-YurBQU1ve2cTIWlw&s=10'),
   Product('Tai nghe Bluetooth', '1.290.000đ', 'cat_accessory', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7C6gblEbaXH0yq7nRLxqzUVQHDHL-rTJy48UIrgdzhg&s=10'),
@@ -322,6 +364,22 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       );
                       if (mounted) setState(() {});
                     },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12.0, left: 4.0),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const EmilyProfilePage()),
+                        );
+                      },
+                      child: const CircleAvatar(
+                        radius: 16,
+                        backgroundColor: Colors.white,
+                        child: Icon(Icons.person, size: 20, color: Color(0xFF1E3A8A)),
+                      ),
+                    ),
                   ),
                 ],
         ),

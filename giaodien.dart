@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'sanpham.dart';
+import 'package:baitap_buoi5/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -104,103 +103,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final userCtrl = TextEditingController();
-  final passCtrl = TextEditingController();
-  bool obscurePass = true;
-
-  void handleLogin() {
-    if (userCtrl.text.trim().isEmpty || passCtrl.text.trim().isEmpty) {
-      showMessage(context, 'Vui lòng nhập đầy đủ thông tin');
-      return;
-    }
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => const ProductListScreen()),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24.0),
-          child: Card(
-            elevation: 4,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-            child: Padding(
-              padding: const EdgeInsets.all(28.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 138, 30, 75).withValues(alpha: 0.1),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(Icons.shopping_bag_rounded, size: 60, color: Color(0xFF1E3A8A)),
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'ShopEasy',
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color(0xFF1E3A8A)),
-                  ),
-                  const SizedBox(height: 24),
-                  TextField(
-                    controller: userCtrl,
-                    decoration: InputDecoration(
-                      labelText: tr('username'),
-                      prefixIcon: const Icon(Icons.person_outline),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  TextField(
-                    controller: passCtrl,
-                    obscureText: obscurePass,
-                    decoration: InputDecoration(
-                      labelText: tr('password'),
-                      prefixIcon: const Icon(Icons.lock_outline),
-                      suffixIcon: IconButton(
-                        icon: Icon(obscurePass ? Icons.visibility_off : Icons.visibility),
-                        onPressed: () => setState(() => obscurePass = !obscurePass),
-                      ),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 52,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 138, 30, 80),
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                      ),
-                      onPressed: handleLogin,
-                      child: Text(tr('login_btn'), style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 // =====================================================
 // MÀN HÌNH TÀI KHOẢN & CÀI ĐẶT (SETTINGS SCREEN REDESIGNED)
 // =====================================================
@@ -225,7 +127,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Hủy', style: TextStyle(color: Colors.grey)),
+            child: const Text('Hủy', style: TextStyle(color: Color.fromARGB(255, 158, 158, 158))),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -264,10 +166,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
                 decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 138, 30, 61),
+                  color: Color.fromARGB(255, 189, 109, 133),
                   borderRadius: BorderRadius.vertical(
                     bottom: Radius.circular(28),
                   ),
+                
                 ),
                 child: Column(
                   children: [
@@ -281,7 +184,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                           child: const CircleAvatar(
                             radius: 40,
-                            backgroundImage: NetworkImage('https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-1/840206587_1804328320578734_3490062392824018630_n.jpg?stp=dst-jpg_tt6&cstp=mx960x957&ctp=s200x200&_nc_cat=109&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=e99d92&_nc_ohc=pYJ4hpKvDwwQ7kNvwGvmPxM&_nc_oc=AdqVhgW8DiA4aqZwbcljA2HGqPAGWzOXDv94Ho08bMCkRV0MnQQoZduiM7NnTk1VIPDdi0LznwjPsaF0pH6ErRdU&_nc_zt=24&_nc_ht=scontent.fhan20-1.fna&_nc_gid=eS4XqxYHhUbNtlr7fxPrBQ&_nc_ss=7b2a8&oh=00_AQT3WljzVusame4wDtQArQ-kcAmOdaWjLJsVul5b7gS3Jg&oe=6AF5FF62'),
+                            backgroundImage: NetworkImage('https://scontent.fdad3-8.fna.fbcdn.net/v/t39.30808-6/840206587_1804328320578734_3490062392824018630_n.jpg?stp=dst-jpg_tt6&cstp=mx960x957&ctp=s960x957&_nc_cat=109&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=_kT6hSzbZgEQ7kNvwHjiFWs&_nc_oc=AdqRMDMFHUyzyM6TF50fNUeyl9Met7h_GTYRf7Tsbo2eRHZor7AiFWETYd1iaus8-vI&_nc_zt=23&_nc_ht=scontent.fdad3-8.fna&_nc_gid=rdsAXNy6UIsi-NMGVYRnFw&_nc_ss=7b2a8&oh=00_AQTuey0Sv4baD7SYlR9ZUhw8NuFasX7ih55wsq7boRywmQ&oe=6B090D64'),
                           ),
                         ),
                         Positioned(
@@ -341,6 +244,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
 
               const SizedBox(height: 16),
+              
 
               // 3. KHỐI ĐƠN HÀNG CỦA TÔI
               Padding(
