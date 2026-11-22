@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:baitap_buoi5/login_screen.dart';
+import 'login_screen.dart';
 
 void main() {
   runApp(const MyApp());

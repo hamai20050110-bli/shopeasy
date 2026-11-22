@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:baitap_buoi5/api.dart';
+import 'api.dart';
 
 class EmilyProfilePage extends StatelessWidget {
   const EmilyProfilePage({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:baitap_buoi5/giaodienemily.dart';
+import 'giaodienemily.dart';
 
 import 'chitietsp.dart';
 import 'giaodien.dart';

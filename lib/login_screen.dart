@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:baitap_buoi5/login_service.dart';
-import 'package:baitap_buoi5/sanpham.dart';
+import 'login_service.dart';
+import 'sanpham.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
