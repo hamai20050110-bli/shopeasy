@@ -19,7 +19,7 @@ jobs:
         run: |
           FILE=$(find . -maxdepth 2 -name pubspec.yaml -not -path "./.*" | head -n 1)
           if [ -z "$FILE" ]; then
-            echo "Khong tim thay pubspec.yaml - hay tai file pubspec.yaml len GitHub"
+            echo "Khong tim thay pubspec.yaml"
             exit 1
           fi
           echo "dir=$(dirname "$FILE")" >> "$GITHUB_OUTPUT"
@@ -29,9 +29,11 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Install dependencies
+      - name: Enable Web & Install dependencies
         working-directory: ${{ steps.proj.outputs.dir }}
-        run: flutter pub get
+        run: |
+          flutter create . --platforms=web
+          flutter pub get
 
       - name: Build Web
         working-directory: ${{ steps.proj.outputs.dir }}
