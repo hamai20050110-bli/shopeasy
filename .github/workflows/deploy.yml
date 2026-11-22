@@ -1,26 +1,19 @@
-name: Deploy Flutter Web
+name: Deploy Flutter Web to GitHub Pages
 
 on:
   push:
-    branches: [main, master]
-  workflow_dispatch:
+    branches:
+      - main
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
+  contents: write
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      # Tự tìm thư mục chứa pubspec.yaml (ở ngoài cùng hoặc trong thư mục con)
       - name: Tim thu muc project
         id: proj
         run: |
@@ -33,32 +26,19 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          channel: stable
+          channel: 'stable'
+          cache: true
 
-      - name: Lay thu vien
+      - name: Install dependencies
         working-directory: ${{ steps.proj.outputs.dir }}
         run: flutter pub get
 
-      # Nếu chưa có thư mục web thì tự tạo
-      - name: Them ho tro web neu thieu
+      - name: Build Web
         working-directory: ${{ steps.proj.outputs.dir }}
-        run: |
-          if [ ! -d web ]; then flutter create . --platforms web; fi
+        run: flutter build web --release --base-href "/shopeasy/"
 
-      - name: Build web
-        working-directory: ${{ steps.proj.outputs.dir }}
-        run: flutter build web --release --base-href "/${{ github.event.repository.name }}/" -t lib/giaodien.dart
-
-      - uses: actions/upload-pages-artifact@v3
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ${{ steps.proj.outputs.dir }}/build/web
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ steps.proj.outputs.dir }}/build/web
